@@ -1,0 +1,37 @@
+<launch>
+
+  <!-- Read in the URDF model of our robot. -->
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find hal)/urdf/hal_base.urdf.xacro'" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+       
+  <!-- beagle_bot launch -->
+  <node name="arduino" pkg="ros_arduino_python" type="arduino_node.py" output="screen">
+      <rosparam file="$(find ros_arduino_python)/config/arduino_params.yaml" command="load" />
+   </node>
+
+
+
+  <!-- Run the map server -->
+     <node name="map_server" pkg="map_server" type="map_server" args="$(find hal)/maps/blank_map.yaml"/>
+
+   <!-- Run fake localization compatible with AMCL output 
+  <node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen" />
+-->
+  <!--<node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /odom /map 100" />-->
+
+  <!--- Run AMCL -->
+    <include file="$(find hal)/launch/amcl_diff.launch" />
+  
+  <!-- The move_base node -->
+     <node pkg="move_base" type="move_base" respawn="false" name="move_base" clear_params="true" output="screen">
+     <rosparam file="$(find hal)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+     <rosparam file="$(find hal)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+     <rosparam file="$(find hal)/config/local_costmap_params.yaml" command="load" />
+     <rosparam file="$(find hal)/config/global_costmap_params.yaml" command="load" />
+     <rosparam file="$(find hal)/config/base_local_planner_params.yaml" command="load" />
+     
+  </node>
+ 
+   
+</launch>

@@ -1,0 +1,7 @@
+<launch>
+
+  <node name="arbotix" pkg="arbotix_python" type="arbotix_driver">
+    <rosparam file="$(find beagle_bot)/config/arbotix.yaml" command="load" />
+    </node>
+
+</launch>

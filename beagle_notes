@@ -1,0 +1,6 @@
+export ROS_IP=10.0.0.11
+export ROS_HOSTNAME=10.0.0.11
+export ROS_MASTER_URI=http://10.0.0.6:11311
+
+
+rostopic pub -1 /cmd_vel geometry_msgs/Twist -- '[1.0, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
