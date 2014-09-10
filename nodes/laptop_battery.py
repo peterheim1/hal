@@ -208,7 +208,7 @@ class LaptopBatteryMonitor(object):
         self._diag_pub  = rospy.Publisher('/diagnostics', DiagnosticArray)
         
         # Battery info
-        self._batt_acpi_path = rospy.get_param('~acpi_path', "/proc/acpi/battery/BAT1")
+        self._batt_acpi_path = rospy.get_param('~acpi_path', "/proc/acpi/battery/BAT0")
         self._batt_design_capacity = 0
         self._batt_last_full_capacity = 0
         self._last_info_update = 0

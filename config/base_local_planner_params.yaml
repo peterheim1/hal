@@ -16,14 +16,14 @@ TrajectoryPlannerROS:
 
    holonomic_robot: false
    yaw_goal_tolerance: 0.1 # about 6 degrees
-   xy_goal_tolerance: 0.05  # 5 cm
+   xy_goal_tolerance: 0.2  #  cm
    latch_xy_goal_tolerance: false
-   pdist_scale: 0.4
+   pdist_scale: 2.0
    gdist_scale: 0.8
    meter_scoring: true
 
-   heading_lookahead: 0.325
-   heading_scoring: false
+   heading_lookahead: 3.3
+   heading_scoring: true
    heading_scoring_timestep: 0.8
    occdist_scale: 0.05
    oscillation_reset_dist: 0.05
@@ -31,10 +31,10 @@ TrajectoryPlannerROS:
    prune_plan: true
 
    sim_time: 1.0
-   sim_granularity: 0.05
+   sim_granularity: 0.025
    angular_sim_granularity: 0.1
    vx_samples: 8
    vy_samples: 0  # zero for a differential drive robot
    vtheta_samples: 20
-   dwa: true
+   dwa: false
    simple_attractor: false

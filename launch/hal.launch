@@ -1,5 +1,17 @@
 <launch>
 
+
+  <!-- start the kinect and laser --> 
+     <include file="$(find hal)/launch/freenect.launch"/>
+
+  <!-- start the joystick --> 
+     <include file="$(find hal)/launch/ps3.launch"/>
+
+  <!-- start the laptop power --> 
+     <include file="$(find hal)/launch/laptop_battery.launch"/>
+
+   
+
   <!-- Read in the URDF model of our robot. -->
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find hal)/urdf/hal_base.urdf.xacro'" />
 
@@ -10,15 +22,8 @@
       <rosparam file="$(find ros_arduino_python)/config/arduino_params.yaml" command="load" />
    </node>
 
-
-
   <!-- Run the map server -->
-     <node name="map_server" pkg="map_server" type="map_server" args="$(find hal)/maps/blank_map.yaml"/>
-
-   <!-- Run fake localization compatible with AMCL output 
-  <node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen" />
--->
-  <!--<node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /odom /map 100" />-->
+     <node name="map_server" pkg="map_server" type="map_server" args="$(find hal)/maps/map_1.yaml"/>
 
   <!--- Run AMCL -->
     <include file="$(find hal)/launch/amcl_diff.launch" />
@@ -34,4 +39,7 @@
   </node>
  
    
+
+<!-- start Hals voice --> 
+  <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py" output="screen"/>
 </launch>
