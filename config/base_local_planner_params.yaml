@@ -1,4 +1,4 @@
-controller_frequency: 3.0
+controller_frequency: 4.0
 recovery_behavior_enabled: false
 clearing_rotation_allowed: false
 
@@ -27,7 +27,7 @@ TrajectoryPlannerROS:
    heading_scoring_timestep: 0.8
    occdist_scale: 0.05
    oscillation_reset_dist: 0.05
-   publish_cost_grid_pc: false
+   publish_cost_grid_pc: true
    prune_plan: true
 
    sim_time: 1.0
@@ -36,5 +36,5 @@ TrajectoryPlannerROS:
    vx_samples: 8
    vy_samples: 0  # zero for a differential drive robot
    vtheta_samples: 20
-   dwa: false
+   dwa: true
    simple_attractor: false

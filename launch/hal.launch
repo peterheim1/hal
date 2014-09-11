@@ -5,7 +5,7 @@
      <include file="$(find hal)/launch/freenect.launch"/>
 
   <!-- start the joystick --> 
-     <include file="$(find hal)/launch/ps3.launch"/>
+     <include file="$(find hal)/launch/xbox.launch"/>
 
   <!-- start the laptop power --> 
      <include file="$(find hal)/launch/laptop_battery.launch"/>
